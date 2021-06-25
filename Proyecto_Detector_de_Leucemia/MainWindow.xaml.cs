@@ -82,7 +82,7 @@ namespace Proyecto_Detector_de_Leucemia
         {
             colorFilter = new EuclideanColorFiltering();
             colorFilter.CenterColor = new RGB(163, 57, 176, 255); //160, 50, 160
-            colorFilter.Radius = 100;
+            colorFilter.Radius = 100;   
             //colorFilter.FillColor = new RGB(255,255,255);
             imgProcessed = ToBitmapImage(colorFilter.Apply(BitmapImage2Bitmap(imgProcessed)));
             return imgProcessed;
