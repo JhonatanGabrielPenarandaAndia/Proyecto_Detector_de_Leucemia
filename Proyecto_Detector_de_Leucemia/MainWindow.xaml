@@ -5,7 +5,8 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Proyecto_Detector_de_Leucemia"
         mc:Ignorable="d"
-        Title="Detector 3000" Height="537.359" Width="685.327">
+        Title="Detector 3000" Height="450" Width="600" MinWidth="400" MinHeight="300">
+
     <Grid Margin="10">
         <Grid.RowDefinitions>
             <RowDefinition Height="2*"/>
@@ -21,6 +22,7 @@
             <Button x:Name="btnLoadImage" Content="Subir Imagen" Width="120" Height="30" HorizontalAlignment="Left" Click="btnLoadImage_Click" Margin="10,10,0,10"/>
             <Button x:Name="btnDetectAbnormalities" Grid.Column="1" Content="Detectar" Width="120" Height="30" Click="btnDetectAbnormalities_Click"/>
         </Grid>
+
         <Grid Grid.Row="2">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="*"/>
