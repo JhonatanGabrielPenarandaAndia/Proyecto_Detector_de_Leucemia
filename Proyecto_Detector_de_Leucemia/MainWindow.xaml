@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Proyecto_Detector_de_Leucemia"
         mc:Ignorable="d"
-        Title="Detector 3000" Height="450" Width="600">
+        Title="Detector 3000" Height="537.359" Width="685.327">
     <Grid Margin="10">
         <Grid.RowDefinitions>
             <RowDefinition Height="2*"/>
@@ -18,13 +18,95 @@
                 <ColumnDefinition/>
                 <ColumnDefinition/>
             </Grid.ColumnDefinitions>
-            <Button x:Name="btnLoadImage" Content="Subir Imagen" Width="120" Height="30" HorizontalAlignment="Left" Click="btnLoadImage_Click"/>
+            <Button x:Name="btnLoadImage" Content="Subir Imagen" Width="120" Height="30" HorizontalAlignment="Left" Click="btnLoadImage_Click" Margin="10,10,0,10"/>
             <Button x:Name="btnDetectAbnormalities" Grid.Column="1" Content="Detectar" Width="120" Height="30" Click="btnDetectAbnormalities_Click"/>
         </Grid>
-        <Border Grid.Row="2" BorderBrush="Black" BorderThickness="1" CornerRadius="5">
-            <TextBlock  Margin="5" TextWrapping="Wrap" Padding="2" Text="diagnóstico.."/>
-        </Border>
-        
+        <Grid Grid.Row="2">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+
+            <Grid Grid.Column="0">
+                
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="40"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="40"/>
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="20"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="20"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="20"/>
+                </Grid.RowDefinitions>
+
+                <Button Grid.Column="2" Grid.Row="1" Content="8" MinWidth="20" MinHeight="20" MaxHeight="80" MaxWidth="80" >
+                    <Button.Template >
+                        <ControlTemplate TargetType="{x:Type Button}" >
+                            <Border BorderBrush="{TemplateBinding Control.BorderBrush}" BorderThickness="1" CornerRadius="5">
+                                <Border.Background>#FFDDDDDD</Border.Background>
+                                <ContentPresenter Content="{TemplateBinding ContentControl.Content}" HorizontalAlignment="Center" VerticalAlignment="Center" ></ContentPresenter>
+                            </Border>
+                        </ControlTemplate>
+                    </Button.Template>
+                </Button>
+                <Button Grid.Column="1" Grid.Row="2" >4</Button>
+                <Button Grid.Column="3" Grid.Row="2">6</Button>
+                <Button Grid.Column="2" Grid.Row="3" >2</Button>
+                <Button Width="auto" Grid.Row="1" Grid.Column="5">+</Button>
+                <Button Width="auto" Grid.Row="3" Grid.Column="5">-</Button>
+                <Button Grid.Column="1" Grid.Row="5" Grid.ColumnSpan="5">Subir Imagen</Button>
+            </Grid>
+            
+            <TabControl Grid.Column="1" HorizontalContentAlignment="Center" Margin="0">
+                <TabItem Header="Limpiar">
+                    
+                    <Grid Background="White">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="*"/>
+                            <RowDefinition Height="*"/>
+                        </Grid.RowDefinitions>
+                        <Button Grid.Row="0" Grid.Column="1" Margin="10"> Limpiar Fondo</Button>
+                        <Button Grid.Column="2" Grid.Row="1" Margin="10"> Aclarar la imagen</Button>
+                        <Label Grid.Row="0" Grid.Column="0" Content="Limpiar fondo:" Margin="0" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                        <Label Grid.Row="1" Grid.Column="0" Content="Ecualizar imagen:" Margin="0" HorizontalAlignment="Center" VerticalAlignment="Center"></Label>
+                    </Grid>
+                </TabItem>
+                <TabItem Header="Extraer">
+                    <Grid Background="White">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="*"/>
+                        </Grid.RowDefinitions>
+                        <Button Height="60" Grid.Column="1" Grid.Row="1" VerticalContentAlignment="Center" Margin="10">Cortar Imagen</Button>
+                        <StackPanel Grid.Column="0" VerticalAlignment="Center" HorizontalAlignment="Left">
+                            <Label Content="InicioX:"></Label>
+                            <Label Content="InicioY:"></Label>
+                            <Label Content="FinX:"></Label>
+                            <Label Content="FinY:"></Label>
+                        </StackPanel>
+                        
+                    </Grid>
+                </TabItem>
+            </TabControl>
+
+        </Grid>
+
     </Grid>
-    
+
 </Window>
