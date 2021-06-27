@@ -15,14 +15,23 @@ namespace Proyecto_Detector_de_Leucemia.ViewModel
         #region Attributes
         private BitmapImage imageMain = new BitmapImage();
         private BitmapImage croppedImage;
+        private BitmapImage imageToShow;
+        Bitmap copy;
+        Graphics graphics;
+        Pen pen = new Pen(Color.Red, 3);
         private int posX=150;
         private int posY=150;
         private static int _long=150;
         private static int width=150;
-        private Rectangle rectangleToCut;
+        private Rectangle rectangleToCut;    
         #endregion
 
         #region Properties
+        public BitmapImage ImageToShow
+        {
+            get { return imageToShow; }
+            set { imageToShow = value; OnPropertyChanged(); }
+        }
         public Rectangle RectangleToCut
         {
             get { return rectangleToCut; }
@@ -75,6 +84,8 @@ namespace Proyecto_Detector_de_Leucemia.ViewModel
                         {
                             string fileName = ofd.FileName;
                             ImageMain = new BitmapImage(new Uri(fileName));
+                            rectangleToCut = new Rectangle(PosX, PosY, Long, Width);                            
+                            RefreshImage();
                         }
                     });
                 return  loadImageCommand;
@@ -90,6 +101,9 @@ namespace Proyecto_Detector_de_Leucemia.ViewModel
                     zoomInRectangleCommand = new RelayCommand(()=>{
                         Long  -= 10;
                         Width -= 10;
+                        rectangleToCut.Height = _long;
+                        rectangleToCut.Width = width;
+                        RefreshImage();
                     });
                 return zoomInRectangleCommand;
             }
@@ -104,6 +118,9 @@ namespace Proyecto_Detector_de_Leucemia.ViewModel
                     zoomOutRectangleCommand = new RelayCommand(() => {
                         Long += 10;
                         Width += 10;
+                        rectangleToCut.Height = _long;
+                        rectangleToCut.Width = width;
+                        RefreshImage();
                     });
                 return zoomOutRectangleCommand;
             }
@@ -118,6 +135,8 @@ namespace Proyecto_Detector_de_Leucemia.ViewModel
                 if (moveRectangleToRight == null)
                     moveRectangleToRight = new RelayCommand(()=> {
                         posX += 10;
+                        rectangleToCut.X = posX;
+                        RefreshImage();
                     });
                 return moveRectangleToRight;
             }
@@ -131,6 +150,8 @@ namespace Proyecto_Detector_de_Leucemia.ViewModel
                 if (moveRectangleToLeft == null)
                     moveRectangleToLeft = new RelayCommand(() => {
                         posX -= 10;
+                        rectangleToCut.X = posX;
+                        RefreshImage();
                     });
                 return moveRectangleToLeft;
             }
@@ -146,6 +167,8 @@ namespace Proyecto_Detector_de_Leucemia.ViewModel
                 if (moveRectangleToTop == null)
                     moveRectangleToTop = new RelayCommand(() => {
                         posY -= 10;
+                        rectangleToCut.Y = posY;
+                        RefreshImage();
                     });
                 return moveRectangleToTop;
             }
@@ -159,6 +182,8 @@ namespace Proyecto_Detector_de_Leucemia.ViewModel
                 if (moveRectangleToBott == null)
                     moveRectangleToBott = new RelayCommand(() => {
                         posY += 10;
+                        rectangleToCut.Y = posY;
+                        RefreshImage();
                     });
                 return moveRectangleToBott;
             }
@@ -171,7 +196,6 @@ namespace Proyecto_Detector_de_Leucemia.ViewModel
             get {
                 if (cutImageCommand == null)
                     cutImageCommand = new RelayCommand(()=> {
-                        rectangleToCut = new Rectangle(PosX, PosY, Long, Width);
                         Bitmap bmp = new Bitmap(rectangleToCut.Width, rectangleToCut.Height);
                         Graphics g = Graphics.FromImage(bmp);
                         g.DrawImage(BitmapImageToBitmap(imageMain), 0, 0, rectangleToCut, GraphicsUnit.Pixel);
@@ -184,7 +208,13 @@ namespace Proyecto_Detector_de_Leucemia.ViewModel
         #endregion
 
         #region Methods
-
+        private void RefreshImage()
+        {
+            copy = (Bitmap)BitmapImageToBitmap(ImageMain);
+            graphics = Graphics.FromImage(copy);
+            graphics.DrawRectangle(pen, rectangleToCut);
+            ImageToShow = ToBitmapImage(copy);
+        } 
         private BitmapImage ToBitmapImage(Bitmap bitmap)
         {
             using (var memory = new MemoryStream())
