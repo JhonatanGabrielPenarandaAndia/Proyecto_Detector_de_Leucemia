@@ -31,7 +31,7 @@
                     <Label Width="60" Content="FinX:"></Label>
                     <Label Width="60" Content="FinY:"></Label>
                 </StackPanel>
-                <Image Source="{Binding ImageMain}" Grid.Row="1">
+                <Image Source="{Binding ImageToShow}" Grid.Row="1">
                    
                 </Image>
             </Grid>
