@@ -4,12 +4,12 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Proyecto_Detector_de_Leucemia.Views"
-        xmlns:vm="clr-namespace:Proyecto_Detector_de_Leucemia.ViewModels"
+        xmlns:vm="clr-namespace:Proyecto_Detector_de_Leucemia.ViewModel"
         mc:Ignorable="d"
         Title="View_Main" Height="500" Width="800" MinWidth="800" MinHeight="500">
-    <Window.Resources>
-        <vm:ViewModel_Main x:Key="MainVM"/>
-    </Window.Resources>
+    <Window.DataContext>
+        <vm:ViewModel_Main/>
+    </Window.DataContext>
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="2.5*"/>
@@ -31,11 +31,15 @@
                     <Label Width="60" Content="FinX:"></Label>
                     <Label Width="60" Content="FinY:"></Label>
                 </StackPanel>
-                <Image/>
+                <Image Source="{Binding ImageMain}" Grid.Row="1">
+                   
+                </Image>
             </Grid>
         </Border>
-        <Border Grid.Column="1" Grid.RowSpan="2" BorderThickness="3" BorderBrush="Black" CornerRadius="5" Margin="0 10 10 20">
-            
+        <Border Grid.Column="1" Grid.RowSpan="2" BorderThickness="1" BorderBrush="Black" CornerRadius="5" Margin="0 10 10 20">
+            <Grid>
+                <Image Source="{Binding CroppedImage}"/>
+            </Grid>
         </Border>
         <Border Grid.Row="1" BorderThickness="3" BorderBrush="Black" CornerRadius="5" Margin="40,0,10,20">
             <Grid Grid.Row="2">
@@ -48,12 +52,12 @@
 
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="30"/>
-                        <ColumnDefinition Width="*"/>
-                        <ColumnDefinition Width="*"/>
-                        <ColumnDefinition Width="*"/>
-                        <ColumnDefinition Width="*"/>
-                        <ColumnDefinition Width="*"/>
-                        <ColumnDefinition Width="30"/>
+                        <ColumnDefinition Width="35*"/>
+                        <ColumnDefinition Width="36*"/>
+                        <ColumnDefinition Width="35*"/>
+                        <ColumnDefinition Width="34*"/>
+                        <ColumnDefinition Width="35*"/>
+                        <ColumnDefinition Width="30*"/>
                     </Grid.ColumnDefinitions>
                     <Grid.RowDefinitions>
                         <RowDefinition Height="10"/>
@@ -65,18 +69,18 @@
                         <RowDefinition Height="10"/>
                     </Grid.RowDefinitions>
 
-                    <Button Grid.Column="2" Grid.Row="1" Style="{StaticResource btnControls}" >8</Button>
-                    <Button Grid.Column="1" Grid.Row="2" Style="{StaticResource btnControls}" >4</Button>
-                    <Button Grid.Column="3" Grid.Row="2" Style="{StaticResource btnControls}" >6</Button>
-                    <Button Grid.Column="2" Grid.Row="3" Style="{StaticResource btnControls}" >2</Button>
-                    <Button Grid.Row="1" Grid.Column="5" Style="{StaticResource btnControls}" >+</Button>
-                    <Button Grid.Row="3" Grid.Column="5" Style="{StaticResource btnControls}" >-</Button>
+                    <Button Grid.Column="2" Grid.Row="1" Style="{StaticResource btnControls}" Command="{Binding MoveRectangleToTop}">8</Button>
+                    <Button Grid.Column="1" Grid.Row="2" Style="{StaticResource btnControls}" Command="{Binding MoveRectangleToLeft}">4</Button>
+                    <Button Grid.Column="3" Grid.Row="2" Style="{StaticResource btnControls}" Command="{Binding MoveRectangleToRight}">6</Button>
+                    <Button Grid.Column="2" Grid.Row="3" Style="{StaticResource btnControls}" Command="{Binding MoveRectangleToBott}">2</Button>
+                    <Button Grid.Row="1" Grid.Column="5" Style="{StaticResource btnControls}" Command="{Binding ZoomInRectangleCommand}" >+</Button>
+                    <Button Grid.Row="3" Grid.Column="5" Style="{StaticResource btnControls}" Command="{Binding ZoomOutRectangleCommand}" >-</Button>
                     <Button Grid.Column="1" Grid.Row="5" Grid.ColumnSpan="5" 
                             Style="{StaticResource btnControls}" 
                             MinWidth="120" MaxWidth="300"
-                            MinHeight="15" MaxHeight="60">Subir Imagen</Button>
+                            MinHeight="15" MaxHeight="60"
+                            Command="{Binding LoadImageCommand}">Subir Imagen</Button>
                 </Grid>
-
                 <TabControl Grid.Column="1" HorizontalContentAlignment="Center">
                     <TabItem Header="Limpiar">
 
@@ -100,8 +104,9 @@
 
                             <Button Margin="10"
                                     VerticalContentAlignment="Center" 
-                                    Style="{StaticResource btnTab}" >Cortar Imagen</Button>
-                            
+                                    Style="{StaticResource btnTab}" 
+                                    Command="{Binding CutImageCommand}">Cortar Imagen</Button>
+
 
                         </Grid>
                     </TabItem>
