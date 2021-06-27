@@ -144,9 +144,6 @@
     <Folder Include="Models\" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Views\imagen.jpeg" />
-  </ItemGroup>
-  <ItemGroup>
     <Resource Include="Resources\img3.jpg" />
   </ItemGroup>
   <ItemGroup>
