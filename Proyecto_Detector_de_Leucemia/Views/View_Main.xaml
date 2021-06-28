@@ -21,7 +21,7 @@
             <ColumnDefinition Width="175"/>
         </Grid.ColumnDefinitions>
         <Border BorderBrush="Black" BorderThickness="3" Margin="40 10 10 10" CornerRadius="5">
-            <Grid Background="#FFD4D4D4">
+            <Grid Background="#18191d">
                 <Grid.RowDefinitions>
                     <RowDefinition Height="auto"/>
                     <RowDefinition/>
@@ -50,7 +50,7 @@
                 </ListView.ItemTemplate>
             </ListView>
         </Border>
-        <Border Grid.Column="1" Grid.Row="1" BorderThickness="2" BorderBrush="Black" CornerRadius="5" Margin="0 0 10 20">
+        <Border Grid.Column="1" Grid.Row="1" BorderThickness="3" BorderBrush="Black" CornerRadius="5" Margin="0 0 10 20">
             <Grid>
                 <Button Content="Guardar Imagen" Style="{StaticResource btnTab}" />
             </Grid>
@@ -119,7 +119,7 @@
                             MinHeight="15" MaxHeight="60"
                             Command="{Binding LoadImageCommand}">Subir Imagen</Button>
                 </Grid>
-                <TabControl Grid.Column="1" HorizontalContentAlignment="Center">
+                <TabControl Grid.Column="1" HorizontalContentAlignment="Center" Style="{StaticResource TabControlMenu}">
                     <TabItem Header="Limpiar">
 
                         <Grid>
