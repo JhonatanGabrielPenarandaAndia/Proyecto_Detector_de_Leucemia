@@ -94,6 +94,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Models\Model_CroppedImage.cs" />
     <Compile Include="ViewModel\ViewModel_Main.cs" />
     <Compile Include="Views\View_Main.xaml.cs">
       <DependentUpon>View_Main.xaml</DependentUpon>
@@ -140,9 +141,7 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Models\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <Resource Include="Resources\img3.jpg" />
   </ItemGroup>
