@@ -272,6 +272,27 @@ namespace Proyecto_Detector_de_Leucemia.ViewModel
             }
         }
 
+        private ICommand selectImageCropped;
+
+        public ICommand SelectImageCropped
+        {
+            get {
+                if (selectImageCropped == null)
+                    selectImageCropped =new RelayCommand<object>((imageSelected)=> {
+                        try
+                        {
+                            ImageToShow = (imageSelected as Model_CroppedImage).SourceImage;
+                        }
+                        catch (Exception ex)
+                        {
+                            MessageBox.Show(ex.Message);
+                        }
+                        
+                    });
+                return selectImageCropped;
+            }
+        }
+
         #endregion
 
         #region Methods
