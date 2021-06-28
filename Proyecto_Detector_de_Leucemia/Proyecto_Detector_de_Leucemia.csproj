@@ -152,5 +152,11 @@
   <ItemGroup>
     <Resource Include="Resources\img2.jpeg" />
   </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Views\FlechaArriba.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\Flecha.jpg" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
