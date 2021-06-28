@@ -5,6 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Proyecto_Detector_de_Leucemia.Views"
         xmlns:vm="clr-namespace:Proyecto_Detector_de_Leucemia.ViewModel"
+        xmlns:fa="clr-namespace:FontAwesome.WPF;assembly=FontAwesome.WPF"
         mc:Ignorable="d"
         Title="View_Main" Height="500" Width="800" MinWidth="800" MinHeight="600">
     <Window.DataContext>
@@ -25,12 +26,14 @@
                     <RowDefinition Height="auto"/>
                     <RowDefinition/>
                 </Grid.RowDefinitions>
-                <StackPanel Orientation="Horizontal">
-                    <Label Width="60" Content="InicioX:"></Label>
-                    <Label Width="60" Content="InicioY:"></Label>
-                    <Label Width="60" Content="FinX:"></Label>
-                    <Label Width="60" Content="FinY:"></Label>
-                </StackPanel>
+                <Border Grid.Row="0" BorderThickness="0,0,0,2" BorderBrush="Black">
+                    <StackPanel Orientation="Horizontal">
+                        <Label Width="60" Content="InicioX:"></Label>
+                        <Label Width="60" Content="InicioY:"></Label>
+                        <Label Width="60" Content="FinX:"></Label>
+                        <Label Width="60" Content="FinY:"></Label>
+                    </StackPanel>
+                </Border>
                 <Image Source="{Binding ImageToShow}" Grid.Row="1">
                    
                 </Image>
@@ -81,12 +84,35 @@
                     </Grid.RowDefinitions>
 
                     <Button Grid.Column="2" Grid.Row="1" Style="{StaticResource btnControls}" Command="{Binding MoveRectangleToTop}">
+                        <DockPanel>
+                            <fa:ImageAwesome Icon="ArrowUp" Margin="2" Foreground="White" />
+                        </DockPanel>
                     </Button>
-                    <Button Grid.Column="1" Grid.Row="2" Style="{StaticResource btnControls}" Command="{Binding MoveRectangleToLeft}">4</Button>
-                    <Button Grid.Column="3" Grid.Row="2" Style="{StaticResource btnControls}" Command="{Binding MoveRectangleToRight}">6</Button>
-                    <Button Grid.Column="2" Grid.Row="3" Style="{StaticResource btnControls}" Command="{Binding MoveRectangleToBott}">2</Button>
-                    <Button Grid.Row="1" Grid.Column="5" Style="{StaticResource btnControls}" Command="{Binding ZoomInRectangleCommand}" >+</Button>
-                    <Button Grid.Row="3" Grid.Column="5" Style="{StaticResource btnControls}" Command="{Binding ZoomOutRectangleCommand}" >-</Button>
+                    <Button Grid.Column="1" Grid.Row="2" Style="{StaticResource btnControls}" Command="{Binding MoveRectangleToLeft}">
+                        <DockPanel>
+                            <fa:ImageAwesome Icon="ArrowLeft" Margin="2" Foreground="White"/>
+                        </DockPanel>
+                    </Button>
+                    <Button Grid.Column="3" Grid.Row="2" Style="{StaticResource btnControls}" Command="{Binding MoveRectangleToRight}">
+                        <DockPanel>
+                            <fa:ImageAwesome Icon="ArrowRight" Margin="2" Foreground="White"/>
+                        </DockPanel>
+                    </Button>
+                    <Button Grid.Column="2" Grid.Row="3" Style="{StaticResource btnControls}" Command="{Binding MoveRectangleToBott}">
+                        <DockPanel>
+                            <fa:ImageAwesome Icon="ArrowDown" Margin="2" Foreground="White"/>
+                        </DockPanel>
+                    </Button>
+                    <Button Grid.Row="1" Grid.Column="5" Style="{StaticResource btnControls}" Command="{Binding ZoomInRectangleCommand}" >
+                        <DockPanel>
+                            <fa:ImageAwesome Icon="Plus" Margin="2" Foreground="White"/>
+                        </DockPanel>
+                    </Button>
+                    <Button Grid.Row="3" Grid.Column="5" Style="{StaticResource btnControls}" Command="{Binding ZoomOutRectangleCommand}" >
+                        <DockPanel>
+                            <fa:ImageAwesome Icon="Minus" Margin="7" Foreground="White"/>
+                        </DockPanel>
+                    </Button>
                     <Button Grid.Column="1" Grid.Row="5" Grid.ColumnSpan="5" 
                             Style="{StaticResource btnControls}" 
                             MinWidth="120" MaxWidth="300"
