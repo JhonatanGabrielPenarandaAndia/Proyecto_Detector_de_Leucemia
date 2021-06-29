@@ -5,13 +5,14 @@ namespace Proyecto_Detector_de_Leucemia.Models
     public class Model_CroppedImage
     {
         public BitmapImage SourceImage { get; set; }
-        private string name ="asdasd";
+        private int width = 86;
 
-        public string Name
+        public int Width
         {
-            get { return name; }
-            set { name = value; }
+            get { return width; }
+            set { width = value; }
         }
+
 
     }
 }

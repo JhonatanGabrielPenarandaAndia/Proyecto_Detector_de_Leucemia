@@ -7,11 +7,13 @@
     <Color x:Key="BlackBlue">#01111e</Color>
     <Color x:Key="DarkBlue">#012138</Color>
     <Color x:Key="Blue">#013253</Color>
+    <Color x:Key="Whiteoutline">#f8f8ff</Color>
     <SolidColorBrush x:Key="BackgroundColor" Color="{StaticResource Black}"/>
     <SolidColorBrush x:Key="BackgroundGridImageColor" Color="{StaticResource BlackBlue}"/>
     <SolidColorBrush x:Key="BackgroundGridsColor" Color="{StaticResource DarkBlue}"/>
     <SolidColorBrush x:Key="BackgroundBlueColor" Color="{StaticResource Blue}"/>
-    
+    <SolidColorBrush x:Key="ColorWhiteBorder" Color="{StaticResource Whiteoutline}"/>
+
     <Style TargetType="Grid" x:Key="ContainerColor">
         <Setter Property="Background" Value="{StaticResource BackgroundColor}"/>
     </Style>
@@ -30,7 +32,7 @@
         <Setter Property="FontStyle" Value="Normal"/>
         <Setter Property="FontFamily" Value="Verdana"/>
         <Setter Property="FontWeight" Value="Bold"/>
-        <Setter Property="BorderBrush" Value="GhostWhite"/>
+        <Setter Property="BorderBrush" Value="{StaticResource ColorWhiteBorder}"/>
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate>
@@ -72,7 +74,7 @@
         <Setter Property="BorderThickness" Value="2,2,0,0"/>
         <Style.Resources>
             <Style TargetType="TabItem">
-                <Setter Property="Foreground" Value="GhostWhite"/>
+                <Setter Property="Foreground" Value="{StaticResource ColorWhiteBorder}"/>
                 <Setter Property="Template">
                     <Setter.Value>
                         <ControlTemplate TargetType="TabItem">
@@ -101,7 +103,17 @@
     <Style TargetType="Label">
         <Setter Property="FontWeight" Value="Bold"/>
         <Setter Property="FontFamily" Value="Verdana"/>
-        <Setter Property="Foreground" Value="GhostWhite"/>
+        <Setter Property="Foreground" Value="{StaticResource ColorWhiteBorder}"/>
+        <Setter Property="Margin" Value="2,0,2,0"/>
+    </Style>
+
+    <Style TargetType="CheckBox">
+        <Setter Property="Foreground" Value="{StaticResource ColorWhiteBorder}"/>
+        <Setter Property="FontFamily" Value="Verdana"/>
+        <Setter Property="FontWeight" Value="Bold"/>
+        <Setter Property="HorizontalAlignment" Value="Center"/>
+        <Setter Property="VerticalAlignment" Value="Center"/>
+        <Setter Property="Margin" Value="5,0,5,0"/>
     </Style>
 
     <Style TargetType="ListView">
