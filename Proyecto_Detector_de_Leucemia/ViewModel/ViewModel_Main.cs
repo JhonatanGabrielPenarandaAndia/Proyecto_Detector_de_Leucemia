@@ -9,6 +9,8 @@ using System.IO;
 using System.Windows;
 using System.Windows.Input;
 using System.Windows.Media.Imaging;
+using AForge.Imaging.Filters;
+using AForge.Imaging;
 
 namespace Proyecto_Detector_de_Leucemia.ViewModel
 {
@@ -27,6 +29,7 @@ namespace Proyecto_Detector_de_Leucemia.ViewModel
         private static int _long=200;
         private static int width=150;
         private Rectangle rectangleToCut;
+        private EuclideanColorFiltering colorfilter;
         #endregion
 
         #region Properties
@@ -74,6 +77,11 @@ namespace Proyecto_Detector_de_Leucemia.ViewModel
             get { return posX; }
             set { posX = value; }
         }       
+        public EuclideanColorFiltering ColorFilter
+        {
+            get { return colorfilter; }
+            set { colorfilter = value; OnPropertyChanged(); }
+        }
         #endregion
 
         #region Commands
@@ -294,6 +302,27 @@ namespace Proyecto_Detector_de_Leucemia.ViewModel
             }
         }
 
+        private ICommand applyBackgroundRemoveImage;
+
+        public ICommand ApplyBackgroundRemoveImage
+        {
+            get
+            {
+                if (applyBackgroundRemoveImage == null)
+                    applyBackgroundRemoveImage = new RelayCommand(() => {
+                        try
+                        {
+                            CroppedImage = RemoveBackgroundImage(ImageToShow);
+                            ListOfCroppedImage.Add(new Model_CroppedImage { SourceImage = croppedImage });
+                        }catch (Exception ex)
+                        {
+                            MessageBox.Show("Debe seleccionar una imagen." + ex.Message);
+                        }
+                    });
+                return applyBackgroundRemoveImage;
+            }
+        }
+
         #endregion
 
         #region Methods
@@ -339,6 +368,14 @@ namespace Proyecto_Detector_de_Leucemia.ViewModel
                 Bitmap bitmap = new Bitmap(outStream);
                 return new Bitmap(bitmap);
             }
+        }
+        private BitmapImage RemoveBackgroundImage(BitmapImage imgProceseed)
+        {
+            ColorFilter = new EuclideanColorFiltering();
+            ColorFilter.CenterColor = new RGB(163, 57, 176);
+            ColorFilter.Radius = 100;
+            imgProceseed = ToBitmapImage(ColorFilter.Apply(BitmapImageToBitmap(imgProceseed)));
+            return imgProceseed;
         }
         #endregion
 
