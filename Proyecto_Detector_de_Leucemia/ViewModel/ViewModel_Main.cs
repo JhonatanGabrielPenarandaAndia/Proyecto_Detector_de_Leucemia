@@ -24,7 +24,7 @@ namespace Proyecto_Detector_de_Leucemia.ViewModel
         Pen pen = new Pen(Color.Red, 3);
         private int posX=150;
         private int posY=150;
-        private static int _long=150;
+        private static int _long=200;
         private static int width=150;
         private Rectangle rectangleToCut;
         #endregion
@@ -97,6 +97,7 @@ namespace Proyecto_Detector_de_Leucemia.ViewModel
                                 ImageMain = new BitmapImage(new Uri(fileName));
                                 rectangleToCut = new Rectangle(PosX, PosY, Long, Width);
                                 RefreshImage();
+                                listOfCroppedImage.Add(new Model_CroppedImage {SourceImage=ImageMain,Width=190 });
                             }
                         }
                         catch (Exception ex)
