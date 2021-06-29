@@ -25,7 +25,7 @@
             <ColumnDefinition Width="*"/>
         </Grid.ColumnDefinitions>
         <Border Grid.Row="0" Grid.Column="1" Grid.ColumnSpan="3">
-            <Grid>
+            <Grid Margin="5">
                 <Grid.RowDefinitions>
                     <RowDefinition Height="auto"/>
                     <RowDefinition/>
@@ -65,7 +65,6 @@
             </ListView>
         </Border>
         <Border Grid.Column="3" Grid.Row="1">
-            
             <TabControl Grid.Column="2" HorizontalContentAlignment="Center" Style="{StaticResource TabControlMenu}">
                 <TabItem Header="Limpiar">
                     <Grid>

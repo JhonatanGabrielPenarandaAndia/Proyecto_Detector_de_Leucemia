@@ -72,10 +72,11 @@
         <Setter Property="BorderThickness" Value="2,2,0,0"/>
         <Style.Resources>
             <Style TargetType="TabItem">
+                <Setter Property="Foreground" Value="GhostWhite"/>
                 <Setter Property="Template">
                     <Setter.Value>
                         <ControlTemplate TargetType="TabItem">
-                            <Border Name="Border" BorderThickness="1,1,1,0" BorderBrush="#73a8d0" CornerRadius="4,4,0,0" Margin="2,0">
+                            <Border Name="Border" BorderThickness="1,1,1,0" BorderBrush="#073245" CornerRadius="4,4,0,0" Margin="2,0">
                                 <ContentPresenter
                                         VerticalAlignment="Center"
                                         HorizontalAlignment="Center"
@@ -84,10 +85,10 @@
                             </Border>
                             <ControlTemplate.Triggers>
                                 <Trigger Property="IsSelected" Value="True">
-                                    <Setter TargetName="Border" Property="Background" Value="#73a8d0" />
+                                    <Setter TargetName="Border" Property="Background" Value="#073245" />
                                 </Trigger>
                                 <Trigger Property="IsSelected" Value="False">
-                                    <Setter TargetName="Border" Property="Background" Value="GhostWhite" />
+                                    <Setter TargetName="Border" Property="Background" Value="#4886af" />
                                 </Trigger>
                             </ControlTemplate.Triggers>
                         </ControlTemplate>
@@ -100,6 +101,7 @@
     <Style TargetType="Label">
         <Setter Property="FontWeight" Value="Bold"/>
         <Setter Property="FontFamily" Value="Verdana"/>
+        <Setter Property="Foreground" Value="GhostWhite"/>
     </Style>
 
     <Style TargetType="ListView">
