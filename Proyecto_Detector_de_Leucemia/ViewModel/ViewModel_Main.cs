@@ -120,8 +120,8 @@ namespace Proyecto_Detector_de_Leucemia.ViewModel
                     zoomInRectangleCommand = new RelayCommand(()=>{
                         Long  += 10;
                         Width += 10;
-                        rectangleToCut.Height = _long;
-                        rectangleToCut.Width = width;
+                        rectangleToCut.Height = width;
+                        rectangleToCut.Width = _long;
                         RefreshImage();
                     });
                 return zoomInRectangleCommand;
@@ -139,8 +139,8 @@ namespace Proyecto_Detector_de_Leucemia.ViewModel
                         {
                             Long -= 10;
                             Width -= 10;
-                            rectangleToCut.Height = _long;
-                            rectangleToCut.Width = width;
+                            rectangleToCut.Height = width;
+                            rectangleToCut.Width = _long;
                             RefreshImage();
                         }
                         catch (Exception ex)
