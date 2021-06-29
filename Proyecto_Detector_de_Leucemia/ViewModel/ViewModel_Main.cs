@@ -18,14 +18,18 @@ namespace Proyecto_Detector_de_Leucemia.ViewModel
         private BitmapImage imageMain = new BitmapImage();
         private BitmapImage croppedImage;
         private BitmapImage imageToShow;
+        private Model_CroppedImage imageSelected;
+
+        public Model_CroppedImage ImageSelected
+        {
+            get { return imageSelected; }
+            set { imageSelected = value;OnPropertyChanged(); }
+        }
+
         private ObservableCollection<Model_CroppedImage> listOfCroppedImage = new ObservableCollection<Model_CroppedImage>();
         Bitmap copy;
         Graphics graphics;
         Pen pen = new Pen(Color.Red, 3);
-        private int posX=150;
-        private int posY=150;
-        private static int _long=200;
-        private static int width=150;
         private Rectangle rectangleToCut;
         #endregion
 
@@ -53,26 +57,6 @@ namespace Proyecto_Detector_de_Leucemia.ViewModel
         {
             get { return croppedImage; }
             set { croppedImage = value; OnPropertyChanged(); }
-        }
-        public static int Width
-        {
-            get { return width; }
-            set { width = value; }
-        }
-        public static int Long
-        {
-            get { return _long; }
-            set { _long = value; }
-        }
-        public int PosY
-        {
-            get { return posY; }
-            set { posY = value; }
-        }
-        public int PosX
-        {
-            get { return posX; }
-            set { posX = value; }
         }       
         #endregion
 
@@ -95,7 +79,7 @@ namespace Proyecto_Detector_de_Leucemia.ViewModel
                             {
                                 string fileName = ofd.FileName;
                                 ImageMain = new BitmapImage(new Uri(fileName));
-                                rectangleToCut = new Rectangle(PosX, PosY, Long, Width);
+                                rectangleToCut = new Rectangle(150, 150, 200, 150);
                                 RefreshImage();
                                 listOfCroppedImage.Add(new Model_CroppedImage {SourceImage=ImageMain,Width=190 });
                             }
@@ -118,10 +102,9 @@ namespace Proyecto_Detector_de_Leucemia.ViewModel
             get {
                 if (zoomInRectangleCommand == null)
                     zoomInRectangleCommand = new RelayCommand(()=>{
-                        Long  += 10;
-                        Width += 10;
-                        rectangleToCut.Height = width;
-                        rectangleToCut.Width = _long;
+
+                        rectangleToCut.Height = rectangleToCut.Height+10;
+                        rectangleToCut.Width = rectangleToCut.Width+10;
                         RefreshImage();
                     });
                 return zoomInRectangleCommand;
@@ -137,10 +120,8 @@ namespace Proyecto_Detector_de_Leucemia.ViewModel
                     zoomOutRectangleCommand = new RelayCommand(() => {
                         try
                         {
-                            Long -= 10;
-                            Width -= 10;
-                            rectangleToCut.Height = width;
-                            rectangleToCut.Width = _long;
+                            rectangleToCut.Height = rectangleToCut.Height - 10; ;
+                            rectangleToCut.Width = rectangleToCut.Width-10;
                             RefreshImage();
                         }
                         catch (Exception ex)
@@ -164,8 +145,7 @@ namespace Proyecto_Detector_de_Leucemia.ViewModel
                     moveRectangleToRight = new RelayCommand(()=> {
                         try
                         {
-                            posX += 10;
-                            rectangleToCut.X = posX;
+                            rectangleToCut.X = rectangleToCut.X+10;
                             RefreshImage();
                         }
                         catch (Exception ex)
@@ -187,8 +167,7 @@ namespace Proyecto_Detector_de_Leucemia.ViewModel
                     moveRectangleToLeft = new RelayCommand(() => {
                         try
                         {
-                            posX -= 10;
-                            rectangleToCut.X = posX;
+                            rectangleToCut.X = rectangleToCut.X-10;
                             RefreshImage();
                         }
                         catch (Exception ex)
@@ -211,8 +190,7 @@ namespace Proyecto_Detector_de_Leucemia.ViewModel
                     moveRectangleToTop = new RelayCommand(() => {
                         try
                         {
-                            posY -= 10;
-                            rectangleToCut.Y = posY;
+                            rectangleToCut.Y = rectangleToCut.Y - 10;
                             RefreshImage();
                         }
                         catch (Exception ex)
@@ -234,8 +212,7 @@ namespace Proyecto_Detector_de_Leucemia.ViewModel
                     moveRectangleToBott = new RelayCommand(() => {
                         try
                         {
-                            posY += 10;
-                            rectangleToCut.Y = posY;
+                            rectangleToCut.Y = rectangleToCut.Y + 10;
                             RefreshImage();
                         }
                         catch (Exception ex)
@@ -274,15 +251,21 @@ namespace Proyecto_Detector_de_Leucemia.ViewModel
         }
 
         private ICommand selectImageCropped;
-
         public ICommand SelectImageCropped
         {
             get {
                 if (selectImageCropped == null)
-                    selectImageCropped =new RelayCommand<object>((imageSelected)=> {
+                    selectImageCropped =new RelayCommand(()=> {
                         try
                         {
-                            ImageToShow = (imageSelected as Model_CroppedImage).SourceImage;
+                            if (ImageSelected!=null)
+                            {
+                                ImageMain = ImageSelected.SourceImage;
+                                ImageToShow = ImageMain;
+                                rectangleToCut = new Rectangle(150, 150, 200, 150);
+                                RefreshImage();
+                            }
+                           
                         }
                         catch (Exception ex)
                         {

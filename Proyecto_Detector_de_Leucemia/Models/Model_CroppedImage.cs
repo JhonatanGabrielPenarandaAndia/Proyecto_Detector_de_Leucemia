@@ -2,10 +2,19 @@
 
 namespace Proyecto_Detector_de_Leucemia.Models
 {
-    public class Model_CroppedImage
+    public class Model_CroppedImage:IGeneric
     {
-        public BitmapImage SourceImage { get; set; }
+        private BitmapImage sourceImage;
         private int width = 86;
+        private BitmapImage baseImage;
+
+        public BitmapImage BaseImage
+        {
+            get { return baseImage; }
+            set { baseImage = value;
+                sourceImage = baseImage;
+            }
+        }
 
         public int Width
         {
@@ -13,6 +22,12 @@ namespace Proyecto_Detector_de_Leucemia.Models
             set { width = value; }
         }
 
-
+        public BitmapImage SourceImage
+        {
+            get { return sourceImage; }
+            set { sourceImage = value;
+                  baseImage = value;
+            }
+        }
     }
 }
