@@ -13,44 +13,50 @@
     <Window.DataContext>
         <vm:ViewModel_Main/>
     </Window.DataContext>
-    <Grid Style="{StaticResource FondoMenu}">
+    <Grid Style="{StaticResource ContainerColor}">
         <Grid.RowDefinitions>
             <RowDefinition Height="2.5*"/>
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="*"/>
             <ColumnDefinition Width="232"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+
         </Grid.ColumnDefinitions>
-        <Border BorderBrush="Black" BorderThickness="3" Margin="40 10 10 10" CornerRadius="5">
-            <Grid Background="#18191d">
+        <Border Grid.Row="0" Grid.Column="1" Grid.ColumnSpan="3">
+            <Grid>
                 <Grid.RowDefinitions>
                     <RowDefinition Height="auto"/>
                     <RowDefinition/>
                 </Grid.RowDefinitions>
-                <Border Grid.Row="0" BorderThickness="0,0,0,2" BorderBrush="Black">
+                <Border Grid.Row="0" BorderThickness="0,0,0,2">
                     <StackPanel Orientation="Horizontal">
-                        <Label Width="60" Content="InicioX:"></Label>
-                        <Label Width="60" Content="InicioY:"></Label>
-                        <Label Width="60" Content="FinX:"></Label>
-                        <Label Width="60" Content="FinY:"></Label>
+                        <Label Width="90" Content="InicioX:"></Label>
+                        <Label Width="90" Content="InicioY:"></Label>
+                        <Label Width="70" Content="FinX:"></Label>
+                        <Label Width="70" Content="FinY:"></Label>
+                        <CheckBox Content="Cortar"/>
+                        <CheckBox Content="Aplicar"/>
                     </StackPanel>
+                    
                 </Border>
-                <Image Source="{Binding ImageToShow}" Grid.Row="1">
-                   
+                <Image Source="{Binding ImageToShow}" Grid.Row="1" Margin="5">
                 </Image>
             </Grid>
         </Border>
-        <Border Grid.Column="1" BorderThickness="2" BorderBrush="Black" CornerRadius="5" Margin="0 10 10 10">
+        <Border Grid.Column="0">
             <ListView  x:Name="lv" ItemsSource="{Binding ListOfCroppedImage}" ScrollViewer.HorizontalScrollBarVisibility="Hidden">
                 <ListView.ItemsPanel>
                     <ItemsPanelTemplate>
                         <WrapPanel Width="200"/>
                     </ItemsPanelTemplate>
                 </ListView.ItemsPanel>
+
                 <ListView.ItemTemplate>
                     <DataTemplate>
-                        <Border BorderBrush="Red" BorderThickness="2">
+                        <Border BorderBrush="#DDF0FE" BorderThickness="2">
                             <Image Source="{Binding SourceImage}" Width="{Binding Width}"/>
                         </Border>
                     </DataTemplate>
@@ -67,105 +73,129 @@
                 </i:Interaction.Triggers>                
             </ListView>
         </Border>
-        <Border Grid.Column="1" Grid.Row="1" BorderThickness="3" BorderBrush="Black" CornerRadius="5" Margin="0 0 10 20">
-            <Grid>
-                <Button Content="Guardar Imagen" Style="{StaticResource btnTab}" />
-            </Grid>
-        </Border>
-        <Border Grid.Row="1" BorderThickness="3" BorderBrush="Black" CornerRadius="5" Margin="40,0,10,20">
-            <Grid Grid.Row="2">
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="*"/>
-                    <ColumnDefinition Width="*"/>
-                </Grid.ColumnDefinitions>
+        <Border Grid.Column="3" Grid.Row="1">
+            <TabControl Grid.Column="2" HorizontalContentAlignment="Center" Style="{StaticResource TabControlMenu}">
+                <TabItem Header="Limpiar">
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="*"/>
+                            <RowDefinition Height="*"/>
+                        </Grid.RowDefinitions>
+                        <Button Grid.Row="0" Grid.Column="1" Margin="5" Style="{StaticResource btnTab}">Limpiar Fondo</Button>
+                        <Button Grid.Column="2" Grid.Row="1" Margin="5" Style="{StaticResource btnTab}">Aclarar la imagen</Button>
+                        <Label Grid.Row="0" Grid.Column="0" Content="Limpiar fondo:" Margin="0" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                        <Label Grid.Row="1" Grid.Column="0" Content="Ecualizar imagen:" Margin="0" HorizontalAlignment="Center" VerticalAlignment="Center"></Label>
+                    </Grid>
+                </TabItem>
+                <TabItem Header="Extraer">
+                    <Grid>
+                    </Grid>
+                </TabItem>
+            </TabControl>
 
+        </Border>
+        <Border Grid.Row="1" Grid.Column="2">
+            <Grid Grid.Row="2" Style="{StaticResource ContainerGrids}">
                 <Grid Grid.Column="0" >
 
                     <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="30"/>
-                        <ColumnDefinition Width="35*"/>
-                        <ColumnDefinition Width="36*"/>
-                        <ColumnDefinition Width="35*"/>
-                        <ColumnDefinition Width="34*"/>
-                        <ColumnDefinition Width="35*"/>
-                        <ColumnDefinition Width="30*"/>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="auto"/>
+                        <ColumnDefinition Width="auto"/>
+                        <ColumnDefinition Width="*"/>
                     </Grid.ColumnDefinitions>
                     <Grid.RowDefinitions>
-                        <RowDefinition Height="10"/>
                         <RowDefinition Height="*"/>
+                        <RowDefinition Height="auto"/>
                         <RowDefinition Height="*"/>
-                        <RowDefinition Height="*"/>
-                        <RowDefinition Height="15"/>
-                        <RowDefinition Height="*"/>
-                        <RowDefinition Height="10"/>
                     </Grid.RowDefinitions>
+                    
+                    <Grid Grid.Row="1" Grid.Column="1">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="*"/>
+                            <RowDefinition Height="*"/>
+                            <RowDefinition Height="*"/>
+                        </Grid.RowDefinitions>
+                        <Button Grid.Column="1" Grid.Row="0" Style="{StaticResource btnControls}" Command="{Binding MoveRectangleToTop}">
+                            <DockPanel>
+                                <fa:ImageAwesome Icon="ArrowUp" Margin="4" Foreground="White" />
+                            </DockPanel>
+                        </Button>
+                        <Button Grid.Column="0" Grid.Row="1" Style="{StaticResource btnControls}" Command="{Binding MoveRectangleToLeft}">
+                            <DockPanel>
+                                <fa:ImageAwesome Icon="ArrowLeft" Margin="4" Foreground="White"/>
+                            </DockPanel>
+                        </Button>
+                        <Button Grid.Column="2" Grid.Row="1" Style="{StaticResource btnControls}" Command="{Binding MoveRectangleToRight}">
+                            <DockPanel>
+                                <fa:ImageAwesome Icon="ArrowRight" Margin="4" Foreground="White"/>
+                            </DockPanel>
+                        </Button>
+                        <Button Grid.Column="1" Grid.Row="2" Style="{StaticResource btnControls}" Command="{Binding MoveRectangleToBott}">
+                            <DockPanel>
+                                <fa:ImageAwesome Icon="ArrowDown" Margin="4" Foreground="White"/>
+                            </DockPanel>
+                        </Button>
+                        <Button Grid.Column="1" Grid.Row="1"
+                                MaxHeight="60" MaxWidth="60"
+                                MinHeight="10" MinWidth="10"
+                                Content="Aplicar"
+                                Margin="5" Style="{StaticResource BaseButton}"
+                                Command="{Binding CutImageCommand}"></Button>
+                    </Grid>
+                    <Grid Grid.Row="1" Grid.Column="2">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="*"/>
+                            <RowDefinition Height="*"/>
+                        </Grid.RowDefinitions>
+                        <Button Style="{StaticResource btnControls}" Command="{Binding ZoomInRectangleCommand}" >
+                            <DockPanel>
+                                <fa:ImageAwesome Icon="Plus" Margin="7" Foreground="White"/>
+                            </DockPanel>
+                        </Button>
+                        <Button Grid.Row="1" Style="{StaticResource btnControls}" Command="{Binding ZoomOutRectangleCommand}" >
+                            <DockPanel>
+                                <fa:ImageAwesome Icon="Minus" Margin="7" Foreground="White"/>
+                            </DockPanel>
+                        </Button>
+                    </Grid>
 
-                    <Button Grid.Column="2" Grid.Row="1" Style="{StaticResource btnControls}" Command="{Binding MoveRectangleToTop}">
-                        <DockPanel>
-                            <fa:ImageAwesome Icon="ArrowUp" Margin="2" Foreground="White" />
-                        </DockPanel>
-                    </Button>
-                    <Button Grid.Column="1" Grid.Row="2" Style="{StaticResource btnControls}" Command="{Binding MoveRectangleToLeft}">
-                        <DockPanel>
-                            <fa:ImageAwesome Icon="ArrowLeft" Margin="2" Foreground="White"/>
-                        </DockPanel>
-                    </Button>
-                    <Button Grid.Column="3" Grid.Row="2" Style="{StaticResource btnControls}" Command="{Binding MoveRectangleToRight}">
-                        <DockPanel>
-                            <fa:ImageAwesome Icon="ArrowRight" Margin="2" Foreground="White"/>
-                        </DockPanel>
-                    </Button>
-                    <Button Grid.Column="2" Grid.Row="3" Style="{StaticResource btnControls}" Command="{Binding MoveRectangleToBott}">
-                        <DockPanel>
-                            <fa:ImageAwesome Icon="ArrowDown" Margin="2" Foreground="White"/>
-                        </DockPanel>
-                    </Button>
-                    <Button Grid.Row="1" Grid.Column="5" Style="{StaticResource btnControls}" Command="{Binding ZoomInRectangleCommand}" >
-                        <DockPanel>
-                            <fa:ImageAwesome Icon="Plus" Margin="2" Foreground="White"/>
-                        </DockPanel>
-                    </Button>
-                    <Button Grid.Row="3" Grid.Column="5" Style="{StaticResource btnControls}" Command="{Binding ZoomOutRectangleCommand}" >
-                        <DockPanel>
-                            <fa:ImageAwesome Icon="Minus" Margin="7" Foreground="White"/>
-                        </DockPanel>
-                    </Button>
-                    <Button Grid.Column="1" Grid.Row="5" Grid.ColumnSpan="5" 
-                            Style="{StaticResource btnControls}" 
-                            MinWidth="120" MaxWidth="300"
-                            MinHeight="15" MaxHeight="60"
-                            Command="{Binding LoadImageCommand}">Subir Imagen</Button>
                 </Grid>
-                <TabControl Grid.Column="1" HorizontalContentAlignment="Center" Style="{StaticResource TabControlMenu}">
-                    <TabItem Header="Limpiar">
 
-                        <Grid>
-                            <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="*"/>
-                                <ColumnDefinition Width="*"/>
-                            </Grid.ColumnDefinitions>
-                            <Grid.RowDefinitions>
-                                <RowDefinition Height="*"/>
-                                <RowDefinition Height="*"/>
-                            </Grid.RowDefinitions>
-                            <Button Grid.Row="0" Grid.Column="1" Margin="5" Style="{StaticResource btnTab}">Limpiar Fondo</Button>
-                            <Button Grid.Column="2" Grid.Row="1" Margin="5" Style="{StaticResource btnTab}">Aclarar la imagen</Button>
-                            <Label Grid.Row="0" Grid.Column="0" Content="Limpiar fondo:" Margin="0" HorizontalAlignment="Center" VerticalAlignment="Center"/>
-                            <Label Grid.Row="1" Grid.Column="0" Content="Ecualizar imagen:" Margin="0" HorizontalAlignment="Center" VerticalAlignment="Center"></Label>
-                        </Grid>
-                    </TabItem>
-                    <TabItem Header="Extraer">
-                        <Grid>
-
-                            <Button Margin="10"
-                                    VerticalContentAlignment="Center" 
-                                    Style="{StaticResource btnTab}" 
-                                    Command="{Binding CutImageCommand}">Cortar Imagen</Button>
-
-                        </Grid>
-                    </TabItem>
-                </TabControl>
-
+            </Grid>
+        </Border>
+        <Border Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2">
+            <Grid Style="{StaticResource ContainerGrids}">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="40"/>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
+                <Grid Grid.Row="0" Margin="5">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+                    <Button Grid.Column="0" Grid.Row="0"
+                            Style="{StaticResource btnTab}" 
+                            MinWidth="20" MaxWidth="180"
+                            MinHeight="25" MaxHeight="40"
+                            Content="Subir Imagen"
+                            Command="{Binding LoadImageCommand}"/>
+                    <Button Grid.Column="1" Content="Guardar Imagen"
+                            MinWidth="20" MaxWidth="180"
+                            MinHeight="25" MaxHeight="40"
+                            Style="{StaticResource btnTab}"/>
+                </Grid>
+                
             </Grid>
         </Border>
     </Grid>
