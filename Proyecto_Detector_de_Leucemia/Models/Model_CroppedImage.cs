@@ -26,7 +26,7 @@ namespace Proyecto_Detector_de_Leucemia.Models
         {
             get { return sourceImage; }
             set { sourceImage = value;
-                  baseImage = value;
+                  baseImage = value; OnPropertyChanged();
             }
         }
     }

@@ -25,7 +25,7 @@ namespace Proyecto_Detector_de_Leucemia.ViewModel
         public Model_CroppedImage ImageSelected
         {
             get { return imageSelected; }
-            set { imageSelected = value;OnPropertyChanged(); }
+            set { imageSelected = value; OnPropertyChanged(); }
         }
 
         private ObservableCollection<Model_CroppedImage> listOfCroppedImage = new ObservableCollection<Model_CroppedImage>();
@@ -295,11 +295,26 @@ namespace Proyecto_Detector_de_Leucemia.ViewModel
                     applyBackgroundRemoveImage = new RelayCommand(() => {
                         try
                         {
-                            CroppedImage = RemoveBackgroundImage(ImageToShow);
-                            ListOfCroppedImage.Add(new Model_CroppedImage { SourceImage = croppedImage });
+                            if (ImageSelected != null)
+                            {
+                                ImageMain = RemoveBackgroundImage(ImageSelected.SourceImage);
+                                ImageToShow = ImageMain;
+                                RefreshImage();
+                                var result = MessageBox.Show("Deseas actualizar la imagen","GUARDAR IMAGEN", MessageBoxButton.YesNoCancel);
+                                if (result == MessageBoxResult.Yes)
+                                {
+                                    ImageSelected.SourceImage = ImageMain;
+                                    
+                                }else if (result == MessageBoxResult.No)
+                                {
+                                    ImageMain = ImageSelected.BaseImage;
+                                    ImageToShow = ImageMain;
+                                    RefreshImage();
+                                }
+                            }
                         }catch (Exception ex)
                         {
-                            MessageBox.Show("Debe seleccionar una imagen." + ex.Message);
+                            MessageBox.Show(ex.Message);
                         }
                     });
                 return applyBackgroundRemoveImage;

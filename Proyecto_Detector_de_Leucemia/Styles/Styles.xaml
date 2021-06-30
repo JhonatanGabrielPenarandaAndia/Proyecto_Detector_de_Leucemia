@@ -18,7 +18,7 @@
         <Setter Property="Background" Value="{StaticResource BackgroundColor}"/>
     </Style>
     <Style TargetType="Grid" x:Key="ContainerGrids">
-        <Setter Property="Background" Value="{StaticResource BackgroundGridImageColor}"/>
+        <Setter Property="Background" Value="{StaticResource BackgroundColor}"/>
     </Style>
 
     <Style TargetType="Border">
@@ -67,7 +67,7 @@
         <Setter Property="MinHeight" Value="20"/>
     </Style>
     <Style TargetType="TabControl" x:Key="TabControlMenu">
-        <Setter Property="Background" Value="{StaticResource BackgroundGridImageColor}"/>
+        <Setter Property="Background" Value="{StaticResource BackgroundColor}"/>
         <Setter Property="FontWeight" Value="Bold"/>
         <Setter Property="FontFamily" Value="Verdana"/>
         <Setter Property="BorderBrush" Value="Black"/>
