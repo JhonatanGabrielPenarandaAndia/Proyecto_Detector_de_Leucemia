@@ -65,6 +65,7 @@
         <Setter Property="MaxHeight" Value="60" />
         <Setter Property="MinWidth" Value="85"/>
         <Setter Property="MinHeight" Value="20"/>
+        
     </Style>
     <Style TargetType="TabControl" x:Key="TabControlMenu">
         <Setter Property="Background" Value="{StaticResource BackgroundColor}"/>
@@ -118,6 +119,14 @@
 
     <Style TargetType="ListView">
         <Setter Property="Background" Value="Transparent"/>
+    </Style>
+
+    <Style TargetType="Slider">
+        <Setter Property="IsSnapToTickEnabled" Value="True"/>
+        <Setter Property="TickPlacement" Value="BottomRight"/>
+        <Setter Property="TickFrequency" Value="5"/>
+        <Setter Property="Minimum" Value="0"/>
+        <Setter Property="Maximum" Value="255"/>
     </Style>
 
 </ResourceDictionary>

@@ -7,6 +7,13 @@ namespace Proyecto_Detector_de_Leucemia.Models
         private BitmapImage sourceImage;
         private int width = 86;
         private BitmapImage baseImage;
+        private bool haschanged = false;
+
+        public bool HasChanged
+        {
+            get { return haschanged; }
+            set { haschanged = value; }
+        }
 
         public BitmapImage BaseImage
         {
