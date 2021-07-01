@@ -305,8 +305,8 @@ namespace Proyecto_Detector_de_Leucemia.ViewModel
             }
         }
 
+        #region Filters
         private ICommand applyBackgroundRemoveImage;
-
         public ICommand ApplyBackgroundRemoveImage
         {
             get
@@ -317,7 +317,7 @@ namespace Proyecto_Detector_de_Leucemia.ViewModel
                         {
                             if (ImageSelected != null)
                             {
-                                ImageMain = RemoveBackgroundImage(ImageSelected.SourceImage);
+                                ImageMain = RemoveBackgroundImage(ImageMain);
                                 ImageToShow = ImageMain;
                                 ImageSelected.HasChanged = true;
                                 
@@ -333,7 +333,6 @@ namespace Proyecto_Detector_de_Leucemia.ViewModel
         }
 
         private ICommand applyGraysScaleImage;
-
         public ICommand ApplyGraysScaleImage
         {
             get
@@ -346,7 +345,7 @@ namespace Proyecto_Detector_de_Leucemia.ViewModel
                             if (ImageSelected != null)
                             {
                                 
-                                ImageMain = ConvertImageGrayScale(ImageSelected.SourceImage);
+                                ImageMain = ConvertImageGrayScale(ImageMain);
                                 imageToShow = ImageMain;
                                 ImageSelected.HasChanged = true;
                                 RefreshImage();
@@ -358,6 +357,30 @@ namespace Proyecto_Detector_de_Leucemia.ViewModel
                         }
                     });
                 return applyGraysScaleImage;
+            }
+        }
+        #endregion
+
+        private ICommand saveChangesImage;
+        public ICommand SaveChangesImage
+        {
+            get
+            {
+                if (saveChangesImage == null)
+                    saveChangesImage = new RelayCommand(() =>
+                    {
+                        try
+                        {
+                            //ImageSelected.HasChanged = true;
+                            SaveChanges();
+                        }
+                        catch (Exception)
+                        {
+
+                            throw;
+                        }
+                    });
+                return saveChangesImage;
             }
         }
 
@@ -425,7 +448,7 @@ namespace Proyecto_Detector_de_Leucemia.ViewModel
 
         private MessageBoxResult QuestionSave()
         {
-            return MessageBox.Show("Deseas actualizar la imagen", "GUARDAR IMAGEN", MessageBoxButton.YesNo);
+            return MessageBox.Show("¿Deseas actualizar la imagen?", "GUARDAR IMAGEN", MessageBoxButton.YesNo);
         }
 
         private void SaveChanges()
