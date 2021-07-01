@@ -47,7 +47,7 @@
             </Grid>
         </Border>
         <Border Grid.Column="0">
-            <ListView  x:Name="lv" ItemsSource="{Binding ListOfCroppedImage}" ScrollViewer.HorizontalScrollBarVisibility="Hidden" SelectedItem="{Binding ImageSelected}">
+            <ListView  x:Name="lv" ItemsSource="{Binding ListOfCroppedImage}" ScrollViewer.HorizontalScrollBarVisibility="Hidden" >
                 <ListView.ItemsPanel>
                     <ItemsPanelTemplate>
                         <WrapPanel Width="200"/>
@@ -67,6 +67,7 @@
                         <i:InvokeCommandAction Command="{Binding}" />
                         <cmd:EventToCommand
                             Command="{Binding SelectImageCropped}"
+                            CommandParameter="{Binding ElementName=lv, Path=SelectedItem }"
                             />
                     </i:EventTrigger>
                 </i:Interaction.Triggers>                

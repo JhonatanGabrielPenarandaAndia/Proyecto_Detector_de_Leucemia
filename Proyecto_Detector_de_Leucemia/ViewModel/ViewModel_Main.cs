@@ -85,11 +85,14 @@ namespace Proyecto_Detector_de_Leucemia.ViewModel
 
                             if (ofd.ShowDialog() == true)
                             {
+                                imageSelected = new Model_CroppedImage();
                                 string fileName = ofd.FileName;
                                 ImageMain = new BitmapImage(new Uri(fileName));
                                 rectangleToCut = new Rectangle(150, 150, 200, 150);
                                 RefreshImage();
                                 listOfCroppedImage.Add(new Model_CroppedImage {SourceImage=ImageMain,Width=190 });
+                                ImageSelected.SourceImage = ImageMain;
+                                ImageSelected.BaseImage = ImageMain;
                             }
                         }
                         catch (Exception ex)
@@ -262,35 +265,34 @@ namespace Proyecto_Detector_de_Leucemia.ViewModel
         {
             get {
                 if (selectImageCropped == null)
-                    selectImageCropped =new RelayCommand(()=> {
+                    selectImageCropped =new RelayCommand<object>((imgObject)=> {
                         try
                         {
-                            if (ImageSelected.HasChanged == false)
+                            if (ImageSelected != null)
                             {
-                                
-                                if (QuestionSave() == MessageBoxResult.Yes)
+                                /*if (ImageSelected.HasChanged == false)
                                 {
-                                    ImageSelected.SourceImage = ImageMain;
-
-                                }
-                                else if (QuestionSave() == MessageBoxResult.No)
-                                {
-                                    ImageMain = ImageSelected.BaseImage;
-                                    ImageToShow = ImageMain;
-                                    RefreshImage();
-                                }
-                            }
-                            else
-                            {
-                                if (ImageSelected != null)
-                                {
+                                        
                                     ImageMain = ImageSelected.SourceImage;
                                     ImageToShow = ImageMain;
                                     rectangleToCut = new Rectangle(150, 150, 200, 150);
                                     RefreshImage();
+
                                 }
+                                else
+                                {
+                                    SaveChanges();
+                                }*/
+                                if (ImageSelected.HasChanged != false)
+                                {
+                                    SaveChanges();
+                                }
+                                ImageSelected = imgObject as Model_CroppedImage;
+                                ImageMain = ImageSelected.SourceImage;
+                                ImageToShow = ImageMain;
+                                rectangleToCut = new Rectangle(150, 150, 200, 150);
+                                RefreshImage();
                             }
-                            /**/
                            
                         }
                         catch (Exception ex)
@@ -317,6 +319,8 @@ namespace Proyecto_Detector_de_Leucemia.ViewModel
                             {
                                 ImageMain = RemoveBackgroundImage(ImageSelected.SourceImage);
                                 ImageToShow = ImageMain;
+                                ImageSelected.HasChanged = true;
+                                
                                 RefreshImage();
                             }
                         }catch (Exception ex)
@@ -341,8 +345,10 @@ namespace Proyecto_Detector_de_Leucemia.ViewModel
                         {
                             if (ImageSelected != null)
                             {
+                                
                                 ImageMain = ConvertImageGrayScale(ImageSelected.SourceImage);
-                                ImageToShow = ImageMain;
+                                imageToShow = ImageMain;
+                                ImageSelected.HasChanged = true;
                                 RefreshImage();
                             }
                         }
@@ -420,6 +426,25 @@ namespace Proyecto_Detector_de_Leucemia.ViewModel
         private MessageBoxResult QuestionSave()
         {
             return MessageBox.Show("Deseas actualizar la imagen", "GUARDAR IMAGEN", MessageBoxButton.YesNo);
+        }
+
+        private void SaveChanges()
+        {
+            if (ImageSelected.HasChanged == true){
+                if (QuestionSave() == MessageBoxResult.Yes)
+                {
+                    ImageSelected.SourceImage = ImageMain;
+                    
+                }
+                else
+                {
+                    ImageMain = ImageSelected.BaseImage;
+                    ImageToShow = ImageMain;
+                    
+                }
+                RefreshImage();
+                ImageSelected.HasChanged = false;
+            }
         }
 
         #endregion
