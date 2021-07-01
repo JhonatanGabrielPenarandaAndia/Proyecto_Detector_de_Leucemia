@@ -37,13 +37,24 @@
                         <Label Width="90" Content="InicioY:"></Label>
                         <Label Width="70" Content="FinX:"></Label>
                         <Label Width="70" Content="FinY:"></Label>
-                        <CheckBox Content="Cortar"/>
-                        <CheckBox Content="Aplicar"/>
+                        
                     </StackPanel>
                     
                 </Border>
                 <Image Source="{Binding ImageToShow}" Grid.Row="1" Margin="5">
                 </Image>
+                <Grid Grid.Row="1" HorizontalAlignment="Left" Margin="1,5">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="20"/>
+                        <RowDefinition Height="20"/>
+                        <RowDefinition/>
+                    </Grid.RowDefinitions>
+                    <CheckBox Grid.Row="0" Content="Cortar" HorizontalAlignment="Stretch"/>
+                    <CheckBox Grid.Row="1" Content="Aplicar" HorizontalAlignment="Stretch"/>
+                    <Button Grid.Row="2"  Style="{StaticResource btnTab}"
+                            Content="Save" VerticalAlignment="Bottom"
+                            Command="{Binding SaveChangesImage}"/>
+                </Grid>
             </Grid>
         </Border>
         <Border Grid.Column="0">
