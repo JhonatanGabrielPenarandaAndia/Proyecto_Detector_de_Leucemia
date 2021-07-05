@@ -36,12 +36,14 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="AForge, Version=2.2.5.0, Culture=neutral, PublicKeyToken=c1db6ff4eaa06aeb, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\LibreriaAForge\AForge.dll</HintPath>
+      <HintPath>..\packages\AForge.2.2.5\lib\AForge.dll</HintPath>
     </Reference>
     <Reference Include="AForge.Imaging, Version=2.2.5.0, Culture=neutral, PublicKeyToken=ba8ddea9676ca48b, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\LibreriaAForge\AForge.Imaging.dll</HintPath>
+    </Reference>
+    <Reference Include="AForge.Math, Version=2.2.5.0, Culture=neutral, PublicKeyToken=abba2e25397ee8c9, processorArchitecture=MSIL">
+      <HintPath>..\packages\AForge.Math.2.2.5\lib\AForge.Math.dll</HintPath>
     </Reference>
     <Reference Include="AForge.Video, Version=2.2.5.0, Culture=neutral, PublicKeyToken=cbfb6e07d173c401, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
@@ -144,15 +146,18 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Resource Include="Resources\img2.jpg" />
+    <Resource Include="Resources\img4.jpg" />
+    <Resource Include="Resources\img5.jpg" />
+    <Resource Include="Resources\img6.jpg" />
+    <Resource Include="Resources\img7.jpg" />
+  </ItemGroup>
   <ItemGroup>
     <Resource Include="Resources\img3.jpg" />
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Resources\img1.jpg" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="Resources\img2.jpeg" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

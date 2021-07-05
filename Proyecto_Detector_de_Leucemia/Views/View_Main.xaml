@@ -108,7 +108,7 @@
                         </Grid>
                     </Grid>
                 </TabItem>
-                <TabItem Header="Filtros">
+                <TabItem Header="Personalizar">
                     <Grid>
                         <Grid.RowDefinitions>
                             <RowDefinition Height="*"/>
@@ -116,16 +116,41 @@
                             <RowDefinition Height="*"/>
                         </Grid.RowDefinitions>
                         <Button Grid.Row="0" Margin="5" 
-                                Style="{StaticResource btnTab}" Content="Ecualizar"/>
+                                Style="{StaticResource btnTab}" Content="Ecualizar"
+                                Command="{Binding ApplyEqualizationImage}"/>
                         <Button Grid.Row ="1" Margin="5"
                                 Style="{StaticResource btnTab}" Content="Escala de Grises"
                                 Command="{Binding ApplyGraysScaleImage}"/>
                         <Button Grid.Row="2" Margin="5"
-                                Style="{StaticResource btnTab}" Content="Solarizacion"/>
+                                Style="{StaticResource btnTab}" Content="Extraer celulas"
+                                Command="{Binding ExtractLeukemiaThreeImage}"/>
                     </Grid>
                 </TabItem>
-                <TabItem Header="Blobs">
-                    <Button Grid.Row="2" Margin="5" Style="{StaticResource btnTab}">Bordes</Button>
+                <TabItem Header="Detectar leucemia">
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="*"/>
+                            <RowDefinition Height="40"/>
+                            <RowDefinition Height="*"/>
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+                        <Button Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" 
+                                Margin="5" Style="{StaticResource btnTab}"
+                                Command="{ Binding ApplyLeukemiaConvertBN}">Conversion B/N</Button>
+                        <Button Grid.Row="1" Grid.Column="1"
+                                Margin="5" Style="{StaticResource btnTab}"
+                                Command="{Binding ApplyDilatationImage}">Dilatacion</Button>
+                        <Button Grid.Row="1" Margin="5" 
+                                Style="{StaticResource btnTab}"
+                                Command="{Binding ApplyErosionImage}">Erosion</Button>
+                        <Button Grid.Row="2" Grid.ColumnSpan="2"
+                                Margin="5" Style="{StaticResource btnTab}"
+                                Command="{Binding ApplyLeukemiaDetectionImage}">Deteccion con blobs</Button>
+                    </Grid>
+                    
                 </TabItem>
             </TabControl>
 
