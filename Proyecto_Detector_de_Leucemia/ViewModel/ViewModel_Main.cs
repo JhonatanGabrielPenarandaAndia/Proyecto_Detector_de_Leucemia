@@ -572,6 +572,30 @@ namespace Proyecto_Detector_de_Leucemia.ViewModel
             }
         }
 
+        private ICommand applyDiagnosis;
+        public ICommand ApplyDiagnosis
+        {
+            get
+            {
+                if (applyDiagnosis == null)
+                    applyDiagnosis = new RelayCommand(() =>
+                    {
+                        try
+                        {
+                            if (ImageSelected != null)
+                            {
+                                PatientDiagnosis();
+                            }
+                        }
+                        catch (Exception ex)
+                        {
+                            MessageBox.Show(ex.Message);
+                        }
+                    });
+                return applyDiagnosis;
+            }
+        }
+
         #endregion
 
         #region Methods
@@ -756,6 +780,7 @@ namespace Proyecto_Detector_de_Leucemia.ViewModel
             }
 
             imgProceseed.UnlockBits(data);
+            ImageSelected.CantInfectedBloodCells = blobs.Length;
             return ToBitmapImage(imgProceseed);
         }
         
@@ -801,6 +826,33 @@ namespace Proyecto_Detector_de_Leucemia.ViewModel
             ExtractBiggestBlob filter = new ExtractBiggestBlob();
             imgProceseed = filter.Apply(imgProceseed);
             return ToBitmapImage(imgProceseed);
+        }
+
+        private void PatientDiagnosis()
+        {
+            if (ImageSelected.CantInfectedBloodCells == 0)
+            {
+                ImageSelected.Diagnostic = "Diagnostico:\r\n";
+                ImageSelected.Diagnostic += "No se detecto linfoblastos.";
+            }else if (ImageSelected.CantInfectedBloodCells > 0 && ImageSelected.CantInfectedBloodCells <= 40)
+            {
+                ImageSelected.Diagnostic = "Diagnostico:\r\n";
+                ImageSelected.Diagnostic += "Se detecto pequeños indicios de anormalidades es necesario que hable con un experto";
+                ImageSelected.Diagnostic += " y empiece a realizarse otros examenes como el análisis de medula ósea o la prueba";
+                ImageSelected.Diagnostic += "de liquido cefalorraquídeo para poder alertar lo mas antes posible sobre algun subtipo";
+                ImageSelected.Diagnostic += "de Leucemia.\r\n" + "Linfoblastos detectados: " + ImageSelected.CantInfectedBloodCells.ToString();
+            }else if(ImageSelected.CantInfectedBloodCells > 30)
+            {
+                ImageSelected.Diagnostic = "Diagnostico:\r\n";
+                ImageSelected.Diagnostic += "Los linfoblastos que son globulos blancos con un ADN corrompido estan";
+                ImageSelected.Diagnostic += "creciendo al momento que ya deberian morir y multiplicandose, esto provoca que";
+                ImageSelected.Diagnostic += "el espacio necesario con el que el organismo esta acostumbrado a trabajar se reduzca";
+                ImageSelected.Diagnostic += "provocando serios problemas en el transporte de oxigeno a los tejidos";
+                ImageSelected.Diagnostic += "valla lo mas antes posible a realizarse pruebas para determinar si usted tiene" +
+                    " leucemia linfocítica aguda o alguna variante de Leucemia.\r\n";
+                ImageSelected.Diagnostic += "Linfoblastos detectados: " + ImageSelected.CantInfectedBloodCells.ToString();
+            }
+            
         }
 
         #endregion
