@@ -129,4 +129,23 @@
         <Setter Property="Maximum" Value="255"/>
     </Style>
 
+    <Style TargetType="TextBox">
+        <Setter Property="Foreground" Value="Black"/>
+        <Setter Property="FontFamily" Value="Verdana"/>
+        <Setter Property="Margin" Value="5px"/>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate>
+                    <Border Name="Border" BorderBrush="Black" BorderThickness="3" CornerRadius="10">
+                        <Border.Background>White</Border.Background>
+                        <TextBlock Text="{Binding ImageSelected.Diagnostic}" HorizontalAlignment="Stretch" 
+                                   VerticalAlignment="Center" Margin="5"
+                                   TextWrapping="Wrap"/>
+                    </Border>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+    
+
 </ResourceDictionary>
